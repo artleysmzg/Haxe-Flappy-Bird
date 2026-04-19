@@ -1,0 +1,45 @@
+name: Build and Deploy HTML5 to Docs
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: 
+
+permissions:
+  contents: write 
+
+jobs:
+  build-and-sync:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.3.2
+
+      - name: Install Libraries
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install lime 8.1.2
+          haxelib install openfl 
+          haxelib install flixel 
+          haxelib install flixel-addons 
+          haxelib run lime setup
+
+      - name: Build HTML5
+        run: haxelib run lime build html5
+
+      - name: Deploy to Docs Folder
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./bin/html5/bin
+          publish_branch: main       
+          destination_dir: docs     
+          keep_files: true          
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: "Auto-build HTML5 to docs [skip ci]"
