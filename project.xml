@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    <app title="Flappy Bird" file="FlappyBird" main="Main" version="1.0.0" company="Artleysmzg" />
+
+    <window width="1280" height="720" fps="60" background="-1" hardware="true" vsync="true" />
+    
+    <source path="source" />
+    <assets path="assets" />
+    
+    <haxelib name="flixel" />
+    <haxelib name="flixel-addons" />
+    <haxelib name="openfl" />
+    <haxelib name="lime" />
+    <haxedef name="LIME_NOWINDOWS_OPTIMUS" />
+</project>
