@@ -10,5 +10,5 @@
     <haxelib name="flixel" />
     <haxelib name="flixel-addons" />
     <haxelib name="openfl" />
-    <haxelib name="lime" />
+    <haxelib name="lime" version="8.1.2" />
 </project>
