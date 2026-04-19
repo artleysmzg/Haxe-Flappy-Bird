@@ -22,7 +22,7 @@ jobs:
           haxelib install flixel 6.1.2
           haxelib install flixel-addons 4.0.1
           haxelib install hscript 2.7.0
-          haxelib install hxcpp 4.3.140
+          haxelib install hxcpp 4.3.2
           haxelib run lime setup
         shell: pwsh
 
