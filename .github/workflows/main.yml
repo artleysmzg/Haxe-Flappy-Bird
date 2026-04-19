@@ -17,7 +17,7 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib setup ~/haxelib
-          haxelib install lime
+          haxelib install lime 8.1.4
           haxelib install openfl
           haxelib install flixel
           haxelib install flixel-addons
@@ -25,7 +25,7 @@ jobs:
         shell: pwsh
 
       - name: Build Game
-        run: lime build windows
+        run: haxelib run lime build windows
         shell: pwsh
 
       - name: Upload Finished Game
