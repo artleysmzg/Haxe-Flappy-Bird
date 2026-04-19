@@ -14,9 +14,19 @@ jobs:
         with:
           haxe-version: 4.3.6
 
+      - name: Cache Haxelib
+        uses: actions/cache@v4
+        with:
+          path: |
+            /home/runner/haxelib
+            /home/runner/.haxelib
+          key: ${{ runner.os }}-haxelib-${{ hashFiles('**/.github/workflows/*.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-haxelib-
+
       - name: Install Libraries
         run: |
-          haxelib setup ~/haxelib
+          haxelib setup /home/runner/haxelib
           haxelib install lime 8.1.2
           haxelib install openfl 9.4.1
           haxelib install flixel 6.1.2
