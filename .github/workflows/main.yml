@@ -18,9 +18,9 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install lime 8.1.2
-          haxelib install openfl
-          haxelib install flixel
-          haxelib install flixel-addons
+          haxelib install openfl 9.4.1
+          haxelib install flixel 6.1.2
+          haxelib install flixel-addons 4.0.1
           haxelib run lime setup
         shell: pwsh
 
