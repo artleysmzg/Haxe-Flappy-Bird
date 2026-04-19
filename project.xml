@@ -11,5 +11,4 @@
     <haxelib name="flixel-addons" />
     <haxelib name="openfl" />
     <haxelib name="lime" />
-    <haxedef name="LIME_NOWINDOWS_OPTIMUS" />
 </project>
