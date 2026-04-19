@@ -1,4 +1,4 @@
-name: Build HTML%
+name: Build HTML5
 
 on:
   push:
@@ -20,9 +20,19 @@ jobs:
         with:
           haxe-version: 4.3.2
 
+      - name: Cache Haxelib
+        uses: actions/cache@v4
+        with:
+          path: |
+            /home/runner/haxelib
+            /home/runner/.haxelib
+          key: ${{ runner.os }}-haxelib-${{ hashFiles('**/.github/workflows/*.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-haxelib-
+
       - name: Install Libraries
         run: |
-          haxelib setup ~/haxelib
+          haxelib setup /home/runner/haxelib
           haxelib install lime 8.1.2
           haxelib install openfl 
           haxelib install flixel 
@@ -37,7 +47,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./bin/html5/bin
-          publish_branch: main       
+          publish_branch: web       
           destination_dir: docs     
           keep_files: true          
           user_name: 'github-actions[bot]'
