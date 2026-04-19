@@ -1,0 +1,35 @@
+name: Build Windows
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.5
+
+      - name: Install Libraries
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install lime
+          haxelib install openfl
+          haxelib install flixel
+          haxelib install flixel-addons
+          haxelib run lime setup
+        shell: pwsh
+
+      - name: Build Game
+        run: lime build windows
+        shell: pwsh
+
+      - name: Upload Finished Game
+        uses: actions/upload-artifact@v3
+        with:
+          name: FlappyBird-Windows-Build
+          path: export/release/windows/bin
